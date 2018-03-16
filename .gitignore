@@ -1,0 +1,14 @@
+*/bin
+*/target
+*/.project
+*/.settings
+*/.classpath
+*/.settings/*
+.classpath
+.DS_Store
+.project
+.settings/*
+*.idea
+*.iml
+*.eml
+*.log
