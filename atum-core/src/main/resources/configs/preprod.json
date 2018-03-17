@@ -1,0 +1,6 @@
+{
+	"dbName": "atumdb",
+	"dbUsername": "root",
+	"dbPassword": "",
+	"dbUrl": "jdbc:mysql://localhost:3306/DB_NAME?autoReconnect=true"
+}

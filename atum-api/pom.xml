@@ -13,7 +13,13 @@
 	</parent>
 
 	<url>http://maven.apache.org</url>
+
 	<dependencies>
+		<dependency>
+			<groupId>com.intuit.atum</groupId>
+			<artifactId>atum-core</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -41,9 +47,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<finalName>atum-api</finalName>
-	</build>
 
 </project>
