@@ -1,0 +1,5 @@
+
+FROM mysql
+MAINTAINER Vaibhav Desai "vaibhavdesai137@gmail.com"
+ENV MYSQL_ROOT_PASSWORD=atum
+ADD atum-core/src/main/resources/scripts/schema.sql /docker-entrypoint-initdb.d/.

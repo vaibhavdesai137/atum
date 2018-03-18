@@ -1,7 +1,6 @@
 package com.intuit.atum.api;
 
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -33,23 +32,22 @@ public class Checkout {
 		return result.toString();
 	}
 
-	@PUT
-	@Path("/books/{bookId}")
-	@Produces({ MediaType.APPLICATION_JSON })
-	public String returnBook(@PathParam("bookId") Integer bookId) {
-
-		JsonObject result = new JsonObject();
-
-		try {
-			DBAccess.INSTANCE.returnBook(bookId);
-			result.addProperty("returnSuccessful", true);
-			result.addProperty("msg", "");
-		} catch (Exception e) {
-			result.addProperty("returnSuccessful", false);
-			result.addProperty("msg", e.getMessage());
-		}
-
-		return result.toString();
-	}
+	/*
+	 * @PUT
+	 * 
+	 * @Path("/books/{bookId}")
+	 * 
+	 * @Produces({ MediaType.APPLICATION_JSON }) public String
+	 * returnBook(@PathParam("bookId") Integer bookId) {
+	 * 
+	 * JsonObject result = new JsonObject();
+	 * 
+	 * try { DBAccess.INSTANCE.returnBook(bookId);
+	 * result.addProperty("returnSuccessful", true); result.addProperty("msg",
+	 * ""); } catch (Exception e) { result.addProperty("returnSuccessful",
+	 * false); result.addProperty("msg", e.getMessage()); }
+	 * 
+	 * return result.toString(); }
+	 */
 
 }

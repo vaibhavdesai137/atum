@@ -7,9 +7,6 @@ import java.sql.Statement;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import com.intuit.atum.configs.Configs;
-import com.intuit.atum.configs.ConfigsWrapper;
-
 public enum DataSourceManager {
 
 	INSTANCE;
@@ -18,12 +15,15 @@ public enum DataSourceManager {
 
 	public void init() throws Exception {
 
-		Configs cfg = ConfigsWrapper.CONFIG.getModel();
+		String dbName = System.getenv("DB_NAME");
+		String dbUsername = System.getenv("DB_USERNAME");
+		String dbPassword = System.getenv("DB_PASSWORD");
+		String dbUrl = System.getenv("DB_URL");
 
-		String dbName = cfg.getDbName();
-		String dbUsername = cfg.getDbUsername();
-		String dbPassword = cfg.getDbPassword();
-		String dbUrl = cfg.getDbUrl();
+		System.out.println("dbName: " + dbName);
+		System.out.println("dbUsername: " + dbUsername);
+		System.out.println("dbPassword: " + dbPassword);
+		System.out.println("dbUrl:" + dbUrl);
 
 		dbUrl = dbUrl.replace("DB_NAME", dbName);
 
