@@ -28,9 +28,6 @@ after_success:
 before_deploy:
   - echo "Nothing in before_deploy"
 
-deploy:
-  - echo "Nothing in deploy"
-
 after_deploy:
   - echo "Nothing in after_deploy"
 
