@@ -29,7 +29,7 @@ public enum DBAccess {
 			throw new Exception(msg);
 		}
 
-		// Check if the book is available for checkout
+		// Is already checkedout?
 		if (isBookCheckedOut(bookId)) {
 			String msg = "Book is already checkedout, bookId: " + bookId;
 			System.out.println(msg);
