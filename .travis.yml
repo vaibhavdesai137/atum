@@ -20,8 +20,8 @@ after_success:
   - docker --version
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
   - docker images ls -a
-  - docker build -t atum-mysql-image:$TRAVIS_COMMIT -f build/Dockerfile.mysql .
-  - docker build -t atum-tomcat-image:$TRAVIS_COMMIT -f build/Dockerfile.tomcat .
+  - docker build -t atum-mysql-image:$TAG -f build/Dockerfile.mysql .
+  - docker build -t atum-tomcat-image:$TAG -f build/Dockerfile.tomcat .
   - docker push atum
   - docker images ls -a
   
