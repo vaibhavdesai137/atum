@@ -6,16 +6,24 @@ language: java
 services:
   - docker
 
-before_install:
+script:
   - ls -l
   - docker build -t atum-mysql-image -f build/Dockerfile.mysql .
   - docker build -t atum-tomcat-image -f build/Dockerfile.tomcat .
+  
+after_script:
+  - docker images ls -a
+
+before_deploy:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - docker push atum:latest
-  - docker network create atum-network
-  - docker run --net atum-network -p 3306:3306 --name atum-mysql -d atum-mysql-image
-  - docker ps -a
-  - docker run --net atum-network -p 8080:8080 --name atum-tomcat -d atum-tomcat-image
+
+deploy:
+  provider: script
+  script: docker push atum
+  on:
+    branch: master
+
+after_deploy:
 
 cache:
   directories:

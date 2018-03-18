@@ -3,7 +3,7 @@ FROM tomcat:7.0.57
 MAINTAINER Vaibhav Desai "vaibhavdesai137@gmail.com"
 RUN rm -rf /usr/local/tomcat/webapps/ROOT; exit 0
 RUN rm /usr/local/tomcat/webapps/ROOT.war; exit 0
-ADD atum-api/target/atum-api-1.0.0.war /usr/local/tomcat/webapps/ROOT.war
+ADD $HOME/.m2/repository/com/intuit/atum/atum-api/1.0.0/atum-api-1.0.0.war /usr/local/tomcat/webapps/ROOT.war
 
 # APP specific vars
 ENV DB_NAME=atumdb
