@@ -11,7 +11,7 @@ ADD atum-api/target/atum-api-1.0.0.war /usr/local/tomcat/webapps/ROOT.war
 
 # APP specific vars
 ENV DB_USERNAME=root
-ENV DB_PASSWORD=
+ENV DB_PASSWORD=atum
 ENV DB_NAME=atumdb
 ENV DB_PORT=3306
 ENV DB_URL=jdbc:mysql://atum-mysql:$DB_PORT/$DB_NAME?autoReconnect=true
