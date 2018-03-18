@@ -1,6 +1,6 @@
 
 # Basic info
-FROM tomcat:7.0.57
+FROM tomcat:8
 MAINTAINER Vaibhav Desai "vaibhavdesai137@gmail.com"
 
 # Remove all apps that were bundled with base image
