@@ -29,7 +29,9 @@ public enum DataSourceManager {
 
 		createDs(dbUsername, dbPassword, dbUrl);
 		
+		System.out.println("Trying to get a db connection...");
 		getConnection();
+		System.out.println("Trying to get a db connection...successful");
 	}
 
 	private void createDs(String username, String password, String url) {
