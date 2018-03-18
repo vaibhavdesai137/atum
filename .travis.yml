@@ -23,11 +23,11 @@ after_success:
   - echo "Building atum-mysql image..."
   - docker build -t atum-mysql:$TAG -f build/Dockerfile.mysql .
   - docker tag atum-mysql:$TAG vaibhavdesai137/atum-mysql:$TAG
-  - docker push vaibhavdesai/atum-mysql
+  - docker push vaibhavdesai137/atum-mysql
   - echo "Building atum-tomcat image..."
   - docker build -t atum-tomcat:$TAG -f build/Dockerfile.tomcat .
   - docker tag atum-tomcat:$TAG vaibhavdesai137/atum-tomcat:$TAG
-  - docker push vaibhavdesai/atum-tomcat
+  - docker push vaibhavdesai137/atum-tomcat
   
 before_deploy:
   - echo "Nothing in before_deploy"
