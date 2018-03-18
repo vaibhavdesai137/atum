@@ -6,12 +6,16 @@ language: java
 services:
   - docker
 
-script:
+install:
   - ls -l
+  - mvn clean install -DskipTests
   - docker build -t atum-mysql-image -f build/Dockerfile.mysql .
   - docker build -t atum-tomcat-image -f build/Dockerfile.tomcat .
   
-after_script:
+after_install:
+  skip_cleanup: true
+
+after_install:
   - docker images ls -a
 
 before_deploy:
