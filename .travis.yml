@@ -16,5 +16,6 @@ before_install:
   - docker ps -a
   - docker run --net atum-network -p 8080:8080 --name atum-tomcat -d atum-tomcat-image
 
-script:
-  - bundle exec rake test
+cache:
+  directories:
+  - $HOME/.m2
