@@ -6,6 +6,10 @@ env:
   global:
      - IMAGE_TAG=${TRAVIS_BRANCH}-${TRAVIS_COMMIT::6}
 
+branches:
+  only: 
+    - master
+    
 services:
   - docker
 
