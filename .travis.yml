@@ -4,6 +4,7 @@ language: java
 
 env:
   global:
+     - BRANCH=${TRAVIS_BRANCH}
      - TAG=${TRAVIS_COMMIT::6}
 
 services:
@@ -21,12 +22,12 @@ after_success:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
   - docker images ls -a
   - echo "Building atum-mysql image..."
-  - docker build -t atum-mysql:$TAG -f build/Dockerfile.mysql .
-  - docker tag atum-mysql:$TAG vaibhavdesai137/atum-mysql:$TAG
+  - docker build -t atum-mysql:$BRANCH-$TAG -f build/Dockerfile.mysql .
+  - docker tag atum-mysql:$BRANCH-$TAG vaibhavdesai137/atum-mysql:$BRANCH-$TAG
   - docker push vaibhavdesai137/atum-mysql
   - echo "Building atum-tomcat image..."
-  - docker build -t atum-tomcat:$TAG -f build/Dockerfile.tomcat .
-  - docker tag atum-tomcat:$TAG vaibhavdesai137/atum-tomcat:$TAG
+  - docker build -t atum-tomcat:$BRANCH-$TAG -f build/Dockerfile.tomcat .
+  - docker tag atum-tomcat:$BRANCH-$TAG vaibhavdesai137/atum-tomcat:$BRANCH-$TAG
   - docker push vaibhavdesai137/atum-tomcat
   
 before_deploy:
