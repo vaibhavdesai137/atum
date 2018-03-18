@@ -1,12 +1,17 @@
 
+
 FROM tomcat:7.0.57
 MAINTAINER Vaibhav Desai "vaibhavdesai137@gmail.com"
-RUN rm -rf /usr/local/tomcat/webapps/ROOT; exit 0
+RUN rm -rf /usr/local/tomcat/webapps/*; exit 0
 RUN rm /usr/local/tomcat/webapps/ROOT.war; exit 0
 ADD atum-api/target/atum-api-1.0.0.war /usr/local/tomcat/webapps/ROOT.war
+ADD build/start-tomcat.sh /usr/local/tomcat/bin/start-tomcat.sh
+RUN chmod +x /usr/local/tomcat/bin/start-tomcat.sh
 
 # APP specific vars
 ENV DB_NAME=atumdb
 ENV DB_USERNAME=root
-ENV DB_PASSWORD=atum
-ENV DB_URL=jdbc:mysql://atum-mysql:3306/atumdb?autoReconnect=true
+ENV DB_PASSWORD=
+ENV DB_URL=jdbc:mysql://localhost:3306/atumdb?autoReconnect=true
+
+CMD /usr/local/tomcat/bin/start-tomcat.sh $PORT
