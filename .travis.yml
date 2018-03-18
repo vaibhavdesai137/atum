@@ -7,10 +7,11 @@ services:
   - docker
 
 before_install:
-  - docker build -t atum-mysql-image -f Dockerfile.mysql .
-  - docker build -t atum-tomcat-image -f Dockerfile.tomcat .
+  - ls -l
+  - docker build -t atum-mysql-image -f build/Dockerfile.mysql .
+  - docker build -t atum-tomcat-image -f build/Dockerfile.tomcat .
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  - docker push vaibhavdesai137/atum
+  - docker push atum:latest
   - docker network create atum-network
   - docker run --net atum-network -p 3306:3306 --name atum-mysql -d atum-mysql-image
   - docker ps -a
