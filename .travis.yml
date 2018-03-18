@@ -1,32 +1,38 @@
-
 sudo: required
 
 language: java
+
+env:
+  global:
+     - TAG=${TRAVIS_COMMIT::6}
 
 services:
   - docker
 
 install:
-  - ls -l
   - mvn clean install -DskipTests
+
+script:
+  - echo "Running tests..."
   - mvn test
 
-before_deploy:
+after_success:
+  - docker --version
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - docker images ls -a
+  - docker build -t atum-mysql-image:$TRAVIS_COMMIT -f build/Dockerfile.mysql .
+  - docker build -t atum-tomcat-image:$TRAVIS_COMMIT -f build/Dockerfile.tomcat .
+  - docker push atum
+  - docker images ls -a
+  
+before_deploy:
+  - echo "Nothing in before_deploy"
 
 deploy:
-  provider: script
-  skip_cleanup: true
-  script: 
-    - docker images ls -a
-    - docker build -t atum-mysql-image -f build/Dockerfile.mysql .
-    - docker build -t atum-tomcat-image -f build/Dockerfile.tomcat .
-    - docker push atum
-    - docker images ls -a
-  on:
-    branch: master
+  - echo "Nothing in deploy"
 
 after_deploy:
+  - echo "Nothing in after_deploy"
 
 cache:
   directories:
