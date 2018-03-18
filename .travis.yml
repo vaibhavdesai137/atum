@@ -9,22 +9,20 @@ services:
 install:
   - ls -l
   - mvn clean install -DskipTests
-  - docker build -t atum-mysql-image -f build/Dockerfile.mysql .
-  - docker build -t atum-tomcat-image -f build/Dockerfile.tomcat .
-  
-after_install:
-  skip_cleanup: true
-
-after_install:
-  - docker images ls -a
+  - mvn test
 
 before_deploy:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-  #- docker login --username=_ --password=${HEROKU_AUTH_TOKEN} registry.heroku.com
 
 deploy:
   provider: script
-  script: docker push atum
+  skip_cleanup: true
+  script: 
+    - docker images ls -a
+    - docker build -t atum-mysql-image -f build/Dockerfile.mysql .
+    - docker build -t atum-tomcat-image -f build/Dockerfile.tomcat .
+    - docker push atum
+    - docker images ls -a
   on:
     branch: master
 
