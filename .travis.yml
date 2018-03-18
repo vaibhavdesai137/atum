@@ -20,8 +20,13 @@ after_success:
   - docker --version
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
   - docker images ls -a
-  - docker build -t atum-mysql-image:$TAG -f build/Dockerfile.mysql .
-  - docker build -t atum-tomcat-image:$TAG -f build/Dockerfile.tomcat .
+  - echo "Building docker images..."
+  - docker build -t atum-mysql:$TAG -f build/Dockerfile.mysql .
+  - docker build -t atum-tomcat:$TAG -f build/Dockerfile.tomcat .
+  - echo "Tagging images..."
+  - docker tag atum-mysql:$TAG vaibhavdesai137/atum-mysql:$TAG
+  - docker tag atum-tomcat:$TAG vaibhavdesai137/atum-tomcat:$TAG
+  - echo "Pushing images to docker hub..."
   - docker push atum
   - docker images ls -a
   
