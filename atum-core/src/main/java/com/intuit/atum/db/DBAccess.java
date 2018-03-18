@@ -185,7 +185,9 @@ public enum DBAccess {
 				jsonObj.addProperty("id", rs.getInt("id"));
 				jsonObj.addProperty("title", rs.getString("title"));
 				jsonObj.addProperty("status", rs.getString("status"));
-				jsonObj.addProperty("returnDate", rs.getString("expected_return_date"));
+				BookStatus status = BookStatus.valueOf(rs.getString("status"));
+				String returnDate = status == BookStatus.AVAILABLE ? null : rs.getString("expected_return_date");
+				jsonObj.addProperty("returnDate", returnDate);
 				booksArray.add(jsonObj);
 			}
 
