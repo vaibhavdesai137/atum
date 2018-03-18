@@ -1,7 +1,7 @@
 
 # Playbook does the following:
 
-# Invoke: ansible-playbook deploy-playbook.yml -l batch -i inventory.txt -u root -k
+# Invoke: ansible-playbook deploy-playbook.yml -l [preprod | prod] -i inventory.txt -u root -k
 
 - name: Bring up containers
   hosts: all
