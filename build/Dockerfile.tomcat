@@ -1,17 +1,17 @@
 
-
+# Basic info
 FROM tomcat:7.0.57
 MAINTAINER Vaibhav Desai "vaibhavdesai137@gmail.com"
+
+# Remove all apps that were bundled with base image
 RUN rm -rf /usr/local/tomcat/webapps/*; exit 0
-RUN rm /usr/local/tomcat/webapps/ROOT.war; exit 0
+
+# Copy our war file into the webapp directory
 ADD atum-api/target/atum-api-1.0.0.war /usr/local/tomcat/webapps/ROOT.war
-ADD build/start-tomcat.sh /usr/local/tomcat/bin/start-tomcat.sh
-RUN chmod +x /usr/local/tomcat/bin/start-tomcat.sh
 
 # APP specific vars
-ENV DB_NAME=atumdb
 ENV DB_USERNAME=root
 ENV DB_PASSWORD=
-ENV DB_URL=jdbc:mysql://localhost:3306/atumdb?autoReconnect=true
-
-CMD /usr/local/tomcat/bin/start-tomcat.sh $PORT
+ENV DB_NAME=atumdb
+ENV DB_PORT=3306
+ENV DB_URL=jdbc:mysql://atum-network:$DB_PORT/$DB_NAME?autoReconnect=true

@@ -1,13 +1,11 @@
 package com.intuit.atum.db;
 
-import java.net.URI;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.apache.commons.lang3.StringUtils;
 
 public enum DataSourceManager {
 
@@ -17,28 +15,15 @@ public enum DataSourceManager {
 
 	public void init() throws Exception {
 
-		String jawsDb = System.getenv("JAWSDB_URL");
-		String dbUsername;
-		String dbPassword;
-		String dbPort;
-		String dbUrl;
-
-		// If jawsDb was set, we must be running in heroku
-		if (StringUtils.isBlank(jawsDb)) {
-			dbUsername = System.getenv("DB_USERNAME");
-			dbPassword = System.getenv("DB_PASSWORD");
-			dbPort = System.getenv("DB_PORT");
-			dbUrl = System.getenv("DB_URL");
-		} else {
-			URI jdbUri = new URI(System.getenv("JAWSDB_URL"));
-			dbUsername = jdbUri.getUserInfo().split(":")[0];
-			dbPassword = jdbUri.getUserInfo().split(":")[1];
-			dbPort = String.valueOf(jdbUri.getPort());
-			dbUrl = "jdbc:mysql://" + jdbUri.getHost() + ":" + dbPort + jdbUri.getPath();
-		}
+		String dbUsername = System.getenv("DB_USERNAME");
+		String dbPassword = System.getenv("DB_PASSWORD");
+		String dbName = System.getenv("DB_NAME");
+		String dbPort = System.getenv("DB_PORT");
+		String dbUrl = System.getenv("DB_URL");
 
 		System.out.println("dbUsername: " + dbUsername);
 		System.out.println("dbPassword: " + dbPassword);
+		System.out.println("dbName: " + dbName);
 		System.out.println("dbPort: " + dbPort);
 		System.out.println("dbUrl:" + dbUrl);
 

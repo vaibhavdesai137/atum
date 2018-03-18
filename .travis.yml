@@ -5,7 +5,8 @@ language: java
 env:
   global:
      - BRANCH=${TRAVIS_BRANCH}
-     - TAG=${TRAVIS_COMMIT::6}
+     #- TAG=${TRAVIS_COMMIT::6}
+     - TAG=latest
      - PREPROD_APP_NAME=atum-preprod
      - PROD_APP_NAME=atum-prod
 
@@ -20,12 +21,13 @@ script:
   - mvn test
 
 after_success:
-  - docker --version
-  - docker login --username=_ --password=${HEROKU_AUTH_TOKEN} registry.heroku.com
-  - echo "Building atum-tomcat image..."
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - docker build -t atum-mysql:$BRANCH-$TAG -f build/Dockerfile.mysql .
+  - docker tag atum-mysql:$BRANCH-$TAG vaibhavdesai137/atum-mysql:$BRANCH-$TAG
+  - docker push vaibhavdesai137/atum-mysql
   - docker build -t atum-tomcat:$BRANCH-$TAG -f build/Dockerfile.tomcat .
-  - docker tag atum-tomcat:$BRANCH-$TAG registry.heroku.com/${PREPROD_APP_NAME}/web
-  - docker push registry.heroku.com/${PREPROD_APP_NAME}/web
+  - docker tag atum-tomcat:$BRANCH-$TAG vaibhavdesai137/atum-tomcat:$BRANCH-$TAGb
+  - docker push vaibhavdesai137/atum-tomcat
   
 before_deploy:
   - echo "Nothing in before_deploy"

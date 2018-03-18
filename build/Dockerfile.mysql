@@ -1,5 +1,8 @@
 
+# Basic info
 FROM mysql
 MAINTAINER Vaibhav Desai "vaibhavdesai137@gmail.com"
 ENV MYSQL_ROOT_PASSWORD=atum
+
+# Copy our sql file for mysql to execute when the container runs
 ADD atum-core/src/main/resources/scripts/schema.sql /docker-entrypoint-initdb.d/.
