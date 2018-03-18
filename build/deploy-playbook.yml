@@ -1,0 +1,21 @@
+
+# Playbook does the following:
+
+# Invoke: ansible-playbook deploy-playbook.yml -l batch -i inventory.txt -u root -k
+
+- name: Bring up containers
+  hosts: all
+  gather_facts: yes
+  tasks:
+    -
+      name: Copy shell script to endpoint
+      copy:
+        src: ./start-containers.sh
+        dest: /tmp/
+    -
+      name: Execute shell script to start containers
+      raw: bash /tmp/start-containers.sh >> /tmp/start-containers.log 2>&1    
+    -
+      name: Sleeping for 30 seconds before performing validations
+      pause:
+        seconds: 30

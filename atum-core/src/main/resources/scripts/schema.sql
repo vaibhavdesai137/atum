@@ -1,7 +1,7 @@
 
--- DROP SCHEMA IF EXISTS `atumdb`;
--- CREATE SCHEMA `atumdb` DEFAULT CHARACTER SET utf8;
--- USE `atumdb`;
+DROP SCHEMA IF EXISTS `atumdb`;
+CREATE SCHEMA `atumdb` DEFAULT CHARACTER SET utf8;
+USE `atumdb`;
 
 -- -----------------------------------------------------
 -- Tables
@@ -69,4 +69,4 @@ INSERT INTO books (`title`, `author`, `publisher`) VALUES ('The Hbbit', 'J. R. R
 INSERT INTO books (`title`, `author`, `publisher`) VALUES ('The Hbbit', 'J. R. R. Tolkien', 'Good Publisher');
 INSERT INTO books (`title`, `author`, `publisher`) VALUES ('The Hbbit', 'J. R. R. Tolkien', 'Good Publisher');
 
--- USE `atumdb`;
+USE `atumdb`;

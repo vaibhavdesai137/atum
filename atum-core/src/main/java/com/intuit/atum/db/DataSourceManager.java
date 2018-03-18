@@ -28,6 +28,8 @@ public enum DataSourceManager {
 		System.out.println("dbUrl:" + dbUrl);
 
 		createDs(dbUsername, dbPassword, dbUrl);
+		
+		getConnection();
 	}
 
 	private void createDs(String username, String password, String url) {
@@ -52,13 +54,14 @@ public enum DataSourceManager {
 		ds.setMinEvictableIdleTimeMillis(30000);
 	}
 
-	public Connection getConnection() {
+	public Connection getConnection() throws Exception {
 
 		Connection conn = null;
 		try {
 			conn = ds.getConnection();
 		} catch (Exception e) {
 			System.out.println("Exception in getConnection: " + e);
+			throw e;
 		}
 		return conn;
 	}

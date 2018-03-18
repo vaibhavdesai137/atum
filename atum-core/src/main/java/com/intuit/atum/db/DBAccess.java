@@ -117,7 +117,7 @@ public enum DBAccess {
 
 	}
 
-	public String getBooksBorrowedByMember(int memberId) {
+	public String getBooksBorrowedByMember(int memberId) throws Exception {
 
 		Connection conn = DataSourceManager.INSTANCE.getConnection();
 		PreparedStatement ptmt = null;
@@ -145,6 +145,7 @@ public enum DBAccess {
 
 		} catch (Exception e) {
 			System.out.println("Exception in getBooksBorrowedByMember: " + e);
+			throw e;
 		} finally {
 			DataSourceManager.INSTANCE.closeQuietly(ptmt);
 			DataSourceManager.INSTANCE.closeQuietly(rs);

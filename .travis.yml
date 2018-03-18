@@ -26,7 +26,7 @@ after_success:
   - docker tag atum-mysql:$BRANCH-$TAG vaibhavdesai137/atum-mysql:$BRANCH-$TAG
   - docker push vaibhavdesai137/atum-mysql
   - docker build -t atum-tomcat:$BRANCH-$TAG -f build/Dockerfile.tomcat .
-  - docker tag atum-tomcat:$BRANCH-$TAG vaibhavdesai137/atum-tomcat:$BRANCH-$TAGb
+  - docker tag atum-tomcat:$BRANCH-$TAG vaibhavdesai137/atum-tomcat:$BRANCH-$TAG
   - docker push vaibhavdesai137/atum-tomcat
   
 before_deploy:
