@@ -7,18 +7,23 @@ docker rm -f $(docker ps -a -q)
 echo "\nDeleting previously created networks..."
 docker network rm atum-network
 
+# Pull images
+echo "\nPulling images..."
+docker pull vaibhavdesai137/atum-mysql:master-???
+docker pull vaibhavdesai137/atum-tomcat:master-???
+
 # Create network and start containers
 echo "\nCreating new networks..."
 docker network create atum-network
 
 echo "\nStarting atum-mysql container..."
-docker run --net atum-network -p 3306:3306 --name atum-mysql -d vaibhavdesai137/atum-mysql:master-latest
+docker run --net atum-network -p 3306:3306 --name atum-mysql -d vaibhavdesai137/atum-mysql:master-???
 
 echo "\nSleeping for 15 seconds for mysql to be up..."
 sleep 15
 
 echo "\nStarting atum-tomcat container..."
-docker run --net atum-network -p 8080:8080 --name atum-tomcat -d vaibhavdesai137/atum-tomcat:master-latest
+docker run --net atum-network -p 8080:8080 --name atum-tomcat -d vaibhavdesai137/atum-tomcat:master-???
 
 echo "\nStarting atum-tomcat container..."
 docker ps
