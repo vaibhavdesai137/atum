@@ -33,6 +33,7 @@ CREATE TABLE `checkouts` (
   `id` 						INT 			NOT NULL AUTO_INCREMENT,
   `book_id` 				INT 			NOT NULL,
   `member_id` 				INT 			NOT NULL,
+  `notes`	 				MEDIUMTEXT 		NULL,
   `checkout_date` 			TIMESTAMP 		NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `expected_return_date`	TIMESTAMP 		NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `actual_return_date`		TIMESTAMP 		NULL,
@@ -65,8 +66,8 @@ INSERT INTO books (`title`, `author`, `publisher`) VALUES ('Lord Of The Rings', 
 INSERT INTO books (`title`, `author`, `publisher`) VALUES ('Harry Potter', 'J. K. Rowling', 'Some Publisher');
 INSERT INTO books (`title`, `author`, `publisher`) VALUES ('Harry Potter', 'J. K. Rowling', 'Some Publisher');
 INSERT INTO books (`title`, `author`, `publisher`) VALUES ('Take Of Two Cities', 'Charles Dickens', 'Awesome Publisher');
-INSERT INTO books (`title`, `author`, `publisher`) VALUES ('The Hbbit', 'J. R. R. Tolkien', 'Good Publisher');
-INSERT INTO books (`title`, `author`, `publisher`) VALUES ('The Hbbit', 'J. R. R. Tolkien', 'Good Publisher');
-INSERT INTO books (`title`, `author`, `publisher`) VALUES ('The Hbbit', 'J. R. R. Tolkien', 'Good Publisher');
+INSERT INTO books (`title`, `author`, `publisher`) VALUES ('The Hobbit', 'J. R. R. Tolkien', 'Good Publisher');
+INSERT INTO books (`title`, `author`, `publisher`) VALUES ('The Hobbit', 'J. R. R. Tolkien', 'Good Publisher');
+INSERT INTO books (`title`, `author`, `publisher`) VALUES ('The Hobbit', 'J. R. R. Tolkien', 'Good Publisher');
 
 USE `atumdb`;

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.commons.lang3.StringUtils;
 
 public enum DataSourceManager {
 
@@ -16,10 +17,28 @@ public enum DataSourceManager {
 	public void init() throws Exception {
 
 		String dbUsername = System.getenv("DB_USERNAME");
-		String dbPassword = System.getenv("DB_PASSWORD");
-		String dbName = System.getenv("DB_NAME");
-		String dbPort = System.getenv("DB_PORT");
-		String dbUrl = System.getenv("DB_URL");
+		String dbPassword;
+		String dbName;
+		String dbPort;
+		String dbUrl;
+
+		// TODO: Do not expose passwords. Encrypt
+		// If env vars are not set, we must be running in local
+		if (StringUtils.isBlank(dbUsername)) {
+			System.out.println("ENV vars missing, assuming local run...");
+			dbUsername = "root";
+			dbPassword = "";
+			dbName = "atumdb";
+			dbPort = "3306";
+			dbUrl = "jdbc:mysql://localhost:" + dbPort + "/" + dbName + "?autoReconnect=true";
+		} else {
+			System.out.println("ENV vars present, running as container...");
+			dbUsername = System.getenv("DB_USERNAME");
+			dbPassword = System.getenv("DB_PASSWORD");
+			dbName = System.getenv("DB_NAME");
+			dbPort = System.getenv("DB_PORT");
+			dbUrl = System.getenv("DB_URL");
+		}
 
 		System.out.println("dbUsername: " + dbUsername);
 		System.out.println("dbPassword: " + dbPassword);
@@ -27,9 +46,8 @@ public enum DataSourceManager {
 		System.out.println("dbPort: " + dbPort);
 		System.out.println("dbUrl:" + dbUrl);
 
-		createDs(dbUsername, dbPassword, dbUrl);
-		
 		System.out.println("Trying to get a db connection...");
+		createDs(dbUsername, dbPassword, dbUrl);
 		getConnection();
 		System.out.println("Trying to get a db connection...successful");
 	}
