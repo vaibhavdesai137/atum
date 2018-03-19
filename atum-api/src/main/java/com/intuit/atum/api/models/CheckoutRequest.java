@@ -1,5 +1,7 @@
 package com.intuit.atum.api.models;
 
+import com.google.gson.Gson;
+
 public class CheckoutRequest {
 
 	private Integer memberId;
@@ -28,6 +30,11 @@ public class CheckoutRequest {
 
 	public void setExpectedReturnDate(String expectedReturnDate) {
 		this.expectedReturnDate = expectedReturnDate;
+	}
+
+	@Override
+	public String toString() {
+		return new Gson().toJson(this);
 	}
 
 }

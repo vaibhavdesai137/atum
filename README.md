@@ -1,7 +1,18 @@
 # atum
 
-- This repo conatins the code for the Inuit's assignment. 
+- This repo conatins the code for the Intuit's assignment. 
 - The name "atum" is randomly chosen and does not mean anything.
+
+### Workflow
+- Make code changes and push to master
+- Travis CI picks up the changes and starts a build
+  - If the build is successful, it runs unit tests
+  - If unit tests pass, it creates docker images and uploads to dockerhub
+- *COULD NOT FIGURE OUT A WAY TO AUTO DEPLOY TO PREPROD AND PROD :(
+- Go back to console and run deploy.sh
+  - Deploy to preprod using ansible
+  - Trigger integration tests
+  - If pass, deploy to prod using ansible
 
 ### Architecture
 - Travis [here](https://travis-ci.org/vaibhavdesai137/atum) is used for CI purposes and is configured for commits on master branch only.
@@ -21,6 +32,12 @@
 Pre-Production | Production
 --- | ---
 159.89.136.190 | 167.99.98.82
+
+To deploy:
+```
+cd deploy
+./deploy.sh <image-tag>
+```
 
 ### Local Setup
 This section goes over the setup needed to be up and running on localhost. Have Tomcat installed (v7 and higher)

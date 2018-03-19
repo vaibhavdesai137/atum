@@ -1,0 +1,42 @@
+
+# Playbook does the following:
+
+- name: Bring up containers
+  hosts: all
+  gather_facts: no
+  vars:
+    image_tag: "{{ image_tag }}"
+  tasks:
+    - debug:
+        msg: "Image tag is {{ image_tag }}"
+    -
+      name: Copy shutdown script to endpoint
+      copy:
+        src: ./shutdown.sh
+        dest: /tmp/
+    -
+      name: Copy startup script to endpoint
+      copy:
+        src: ./startup.sh
+        dest: /tmp/
+    -
+      name: Shutdown containers
+      raw: /bin/sh /tmp/shutdown.sh >> /tmp/shutdown.log 2>&1    
+    -
+      name: Confirm containers are down
+      raw: curl http://127.0.0.1:8080/health
+      register: ATUM_HEALTH
+      failed_when: "'ok' in ATUM_HEALTH.stdout"  
+    -
+      name: Start containers
+      raw: /bin/sh /tmp/startup.sh {{ image_tag }} >> /tmp/startup.log 2>&1 
+    -
+      name: Waiting for 15 seconds for containers to be up
+      pause:
+        seconds: 15
+    -
+      name: Confirm containers are up
+      raw: curl http://127.0.0.1:8080/health
+      register: ATUM_HEALTH
+      failed_when: "'ok' not in ATUM_HEALTH.stdout"  
+
