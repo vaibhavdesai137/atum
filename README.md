@@ -28,15 +28,16 @@
 - Downside is Travis does not have an easy way to interact with them
 - Tried Heroku since Travis supports it but they have their own docker circus and I wasn't able to get it going :(
 
-Pre-Production | Production
---- | ---
-159.89.136.190 | 167.99.98.82
-
 To deploy:
 ```
 cd deploy
 ./deploy.sh <image-tag>
 ```
+
+Env | Servers | State
+--- | --- | ---
+Pre-Production | 159.89.136.190 | [Health](http://159.89.136.190:8080/health)
+Production | 167.99.98.82 | [Health](http://167.99.98.82:8080/health)
 
 ### Local Setup
 This section goes over the setup needed to be up and running on localhost. Have Tomcat installed (v7 and higher)
