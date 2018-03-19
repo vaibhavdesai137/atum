@@ -4,7 +4,6 @@ public class CheckoutRequest {
 
 	private Integer memberId;
 	private String notes;
-	private String checkoutDate;
 	private String expectedReturnDate;
 
 	public Integer getMemberId() {
@@ -21,14 +20,6 @@ public class CheckoutRequest {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
-	}
-
-	public String getCheckoutDate() {
-		return checkoutDate;
-	}
-
-	public void setCheckoutDate(String checkoutDate) {
-		this.checkoutDate = checkoutDate;
 	}
 
 	public String getExpectedReturnDate() {

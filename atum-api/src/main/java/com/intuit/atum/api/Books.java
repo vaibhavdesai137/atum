@@ -83,13 +83,12 @@ public class Books {
 		// TODO: Perform validations on input json
 		int memberId = checkoutRequest.getMemberId();
 		String notes = checkoutRequest.getNotes();
-		String checkoutDate = checkoutRequest.getCheckoutDate();
 		String expectedReturnDate = checkoutRequest.getExpectedReturnDate();
 
 		JsonObject result = new JsonObject();
 
 		try {
-			DBAccess.INSTANCE.checkoutBook(bookId, memberId, notes, checkoutDate, expectedReturnDate);
+			DBAccess.INSTANCE.checkoutBook(bookId, memberId, notes, expectedReturnDate);
 			result.addProperty("checkoutSuccessful", true);
 			result.addProperty("msg", "ok");
 		} catch (Exception e) {

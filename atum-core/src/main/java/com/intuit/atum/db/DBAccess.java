@@ -12,8 +12,7 @@ public enum DBAccess {
 
 	INSTANCE;
 
-	public void checkoutBook(int bookId, int memberId, String notes, String checkoutDate, String expectedReturnDate)
-			throws Exception {
+	public void checkoutBook(int bookId, int memberId, String notes, String expectedReturnDate) throws Exception {
 
 		// Is valid book?
 		if (!bookExists(bookId)) {
