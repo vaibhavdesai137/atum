@@ -17,8 +17,8 @@
 ### Architecture
 - Travis [here](https://travis-ci.org/vaibhavdesai137/atum) is used for CI purposes and is configured for commits on master branch only.
 - The build results in two docker images, atum-mysql and atum-tomcat
-  - atum-mysql: hosts mysql and has the schema created already
-  - atum-tomcat: hosts tomcat and has the war file ready to serve traffic
+  - atum-mysql: hosts mysql and has the schema created already [(DockerHub)](https://hub.docker.com/r/vaibhavdesai137/atum-mysql/tags/)
+  - atum-tomcat: hosts tomcat and has the war file ready to serve traffic [(DockerHub)](https://hub.docker.com/r/vaibhavdesai137/atum-tomcat/tags/)
 - The containers interact by sharing a docker network
 ![Alt text](arch.png?raw=true "Title")
 
