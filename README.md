@@ -59,6 +59,7 @@ Validations:
 - Invalid book id
 - Invalid member id
 - Confirm book is not already checkedout
+- Dates are not validated anywhere (defaulting checkoutDate to today and returnDate to 2 weeks from today)
 
 ```
 Endpoint: http://<server:port>/books/<book-id>/action/checkout
@@ -68,7 +69,6 @@ Payload:
 {
   "memberId": "1",
   "notes": "Foo Bar",
-  "checkoutDate": "sdasd",
   "expectedReturnDate": "sdasd"
 }
 Response:
