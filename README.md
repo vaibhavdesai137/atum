@@ -27,7 +27,9 @@ This section goes over the setup needed to be up and running on localhost. Have 
 ```
 git clone git@github.com:vaibhavdesai137/atum.git
 cd atum
-mvn clean install
+mvn clean install -DskipTests (build)
+mvn test (unit tests)
+mvn verify (integration tests)
 ```
 Before starting the server:
 - Ensure mysql is running in locallhost on port 3306
