@@ -1,6 +1,5 @@
-target/
-*/bin
-*/target
+*/target/*
+*/bin/*
 */.project
 */.settings
 */.classpath
