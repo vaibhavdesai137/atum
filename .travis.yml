@@ -19,6 +19,7 @@ install:
 script:
   - echo "Running tests..."
   - mvn test
+  #- mvn verify
 
 after_success:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
