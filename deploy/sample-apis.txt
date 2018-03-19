@@ -1,0 +1,51 @@
+POST: 
+http://localhost:8081/atum-api/books/1111/action/checkout (invalid book)
+{
+	"memberId": "12345",
+	"notes": "Foo Bar",
+	"checkoutDate": "sdasd",
+	"expectedReturnDate": "sdasd"
+}
+
+
+POST: 
+http://localhost:8081/atum-api/books/1/action/checkout (invalid member)
+{
+	"memberId": "12345",
+	"notes": "Foo Bar",
+	"checkoutDate": "sdasd",
+	"expectedReturnDate": "sdasd"
+}
+
+POST:
+http://localhost:8081/atum-api/books/1/action/checkout (valid)
+{
+	"memberId": "1",
+	"notes": "Foo Bar",
+	"checkoutDate": "sdasd",
+	"expectedReturnDate": "sdasd"
+}
+
+POST:
+http://localhost:8081/atum-api/books/1/action/checkout (trying to checkout already checkedout book)
+{
+	"memberId": "1",
+	"notes": "Foo Bar",
+	"checkoutDate": "sdasd",
+	"expectedReturnDate": "sdasd"
+}
+
+
+GET:
+http://localhost:8081/atum-api/books/title/Foo (no such book)
+http://localhost:8081/atum-api/books/title/Lord (single copy)
+http://localhost:8081/atum-api/books/title/Hobbit (multiple copies)
+
+GET: 
+http://localhost:8081/atum-api/members/111/books (invalid member)
+http://localhost:8081/atum-api/members/1/books (valid)
+
+POST:
+http://localhost:8081/atum-api/books/555/action/return (invalid book)
+http://localhost:8081/atum-api/books/5/action/return (book valid but not checkedout)
+http://localhost:8081/atum-api/books/1/action/return (valid)
