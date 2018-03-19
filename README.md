@@ -8,7 +8,9 @@
 - Travis CI picks up the changes and starts a build
   - If the build is successful, it runs unit tests
   - If unit tests pass, it creates docker images and uploads to dockerhub
-- *COULD NOT FIGURE OUT A WAY TO AUTO DEPLOY TO PREPROD AND PROD :(
+-  
+- COULD NOT FIGURE OUT A WAY TO AUTO DEPLOY TO PREPROD AND PROD DIRECTLY FROM TRAVIS :(
+-
 - Go back to console and run deploy.sh
   - Deploy to preprod using ansible
   - Trigger integration tests
@@ -19,6 +21,7 @@
 - The build results in two docker images, atum-mysql and atum-tomcat
   - atum-mysql: hosts mysql and has the schema created already
   - atum-tomcat: hosts tomcat and has the war file ready to serve traffic
+- Yes, we don't persist mysql data but this running databases on container is incorrect anyway :-p
 - The containers interact by sharing a docker network
 - The containers are spun up using a shell script on endpoints (triggered via ansible)
 ![Alt text](arch.png?raw=true "Title")

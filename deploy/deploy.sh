@@ -10,15 +10,17 @@ if [[ $rc -ne 0 ]] ; then
 fi
 
 # Run integration tests
+cd ..
 echo "\nRunning integration tests..."
 mvn verify
 rc=$?
 if [[ $rc -ne 0 ]] ; then
-  echo "\nIntegration tests failed"; 
+  echo "\nIntegration tests failed, not proceeding to prod deploy..."; 
   exit $rc
 fi
 
 # Deploy to prod
+cd deploy
 echo "\nDeploying to prod using ansible..."
 ansible-playbook deploy-playbook.yml --extra-vars "image_tag=$1" -l prod -i inventory.txt -u root -k
 rc=$?
