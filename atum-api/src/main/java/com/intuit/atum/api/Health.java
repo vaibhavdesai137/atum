@@ -15,7 +15,7 @@ public class Health {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public String getHealthStatus() {
 		JsonObject json = new JsonObject();
-		json.addProperty("health", "ok1");
+		json.addProperty("health", "ok");
 		return json.toString();
 	}
 }
