@@ -1,6 +1,6 @@
 # atum
 
-- This repo conatins the code for the Intuit's assignment. 
+- This repo conatins the code for Intuit's assignment. 
 - The name "atum" is randomly chosen and does not mean anything.
 
 ### Workflow
