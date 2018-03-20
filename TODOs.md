@@ -29,6 +29,7 @@ I am sure I am forgetting a bunch of things but the below should be decent start
 **DOCKER:**
 1. DB credentials should not be exposed in docker file
 2. MySQL should ideally be deployed on bare metal. If we must use container, then correct volumes should be set up
+3. Use .yml files when dealing with multiple containers and setting up dependencies
 
 **ENDPOINTS:**
 1. The code uses hardcoded IPs from Digital Ocean for test and deploy
